@@ -45,9 +45,9 @@ class Program {
         int indexTo = 0;
 
         for (int i = 1; i < ary.length; i++) {
-            if (runningSum > 0) {
+            if (runningSum >= 0) {
                 runningSum += ary[i];
-            } else {
+            } else {  
                 if (ary[i] > runningSum) {
                     runningSum = ary[i];
                     indexFrom = i;

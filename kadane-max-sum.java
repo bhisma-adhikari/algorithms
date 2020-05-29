@@ -4,18 +4,18 @@ class Program {
     /**
      * 
      * @param ary
-     * @return Maximum possible sum of any subarray 
+     * @return Maximum possible sum of any subarray
      */
-    public static double kadaneMaxSum(int[] ary){
-        double localMax = Double.NEGATIVE_INFINITY; 
-        double globalMax = Double.NEGATIVE_INFINITY; 
+    public static double kadaneMaxSum(int[] ary) {
+        double localMax = Double.NEGATIVE_INFINITY;
+        double globalMax = Double.NEGATIVE_INFINITY;
 
-        for (int i=0; i<ary.length; i++){
-            localMax = Math.max(ary[i], localMax + ary[i]); 
+        for (int i = 0; i < ary.length; i++) {
+            localMax = Math.max(ary[i], localMax + ary[i]);
             // System.out.println(localMax);
-            if (localMax > globalMax){
-                globalMax = localMax; 
-            } 
+            if (localMax > globalMax) {
+                globalMax = localMax;
+            }
         }
         return globalMax;
     }

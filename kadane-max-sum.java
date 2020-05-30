@@ -2,9 +2,9 @@ import java.lang.Math;
 
 class Program {
     public static void main(String[] args) {
-        int[] ary = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
+        int[] ary = { -2, -1, -3, 4, -1, 2, 1, -5, 4};
         // int[] ary = { -2, -1, -3, -4, -1, -2, -1, -5, -4 };
-        System.out.println(kadaneMaxSum(ary));
+        // System.out.println(kadaneMaxSum(ary));
         System.out.println(kadaneMaxSumWithIndex(ary));
     }
 
@@ -29,7 +29,7 @@ class Program {
 
     public static Ans kadaneMaxSumWithIndex(int[] ary) throws RuntimeException {
 
-        // handle special cases first
+        // special cases
         if (ary.length == 0) {
             throw new RuntimeException("Too short array");
         } else if (ary.length == 1) {
@@ -37,34 +37,28 @@ class Program {
         }
 
         // general case
-
-        int runningSum = ary[0];
-        int globalMax = ary[0];
+        int runningSum = ary[0]; // sum upto previous index
+        int maxSum = ary[0]; // current max sum
 
         int indexFrom = 0;
         int indexTo = 0;
 
         for (int i = 1; i < ary.length; i++) {
+            
             if (runningSum >= 0) {
                 runningSum += ary[i];
-            } else {  
-                if (ary[i] > runningSum) {
-                    runningSum = ary[i];
-                    indexFrom = i;
-                }
+            } else {
+                runningSum = ary[i];
+                indexFrom = i;
             }
 
-            if (runningSum > globalMax) {
-                globalMax = runningSum;
+            if (runningSum >= maxSum) { 
+                maxSum = runningSum;
                 indexTo = i;
             }
         }
 
-        if (indexTo < indexFrom) {
-            indexTo = indexFrom;
-        }
-
-        return new Ans(globalMax, indexFrom, indexTo);
+        return new Ans(maxSum, indexFrom, indexTo);
     }
 
 }

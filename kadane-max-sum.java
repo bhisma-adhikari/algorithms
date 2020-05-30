@@ -2,7 +2,7 @@ import java.lang.Math;
 
 class Program {
     public static void main(String[] args) {
-        int[] ary = { -2, -1, -3, 4, -1, 2, 1, -5, 4};
+        int[] ary = { -2, -1, -3, 0, 4, -1, 2, 1, 0, -5, 4 };
         // int[] ary = { -2, -1, -3, -4, -1, -2, -1, -5, -4 };
         // System.out.println(kadaneMaxSum(ary));
         System.out.println(kadaneMaxSumWithIndex(ary));
@@ -44,7 +44,7 @@ class Program {
         int indexTo = 0;
 
         for (int i = 1; i < ary.length; i++) {
-            
+
             if (runningSum >= 0) {
                 runningSum += ary[i];
             } else {
@@ -52,7 +52,8 @@ class Program {
                 indexFrom = i;
             }
 
-            if (runningSum >= maxSum) { 
+            // >= is used instead of > to ensure indexTo gets updated appropriately
+            if (runningSum >= maxSum) {
                 maxSum = runningSum;
                 indexTo = i;
             }
